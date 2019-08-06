@@ -3,11 +3,29 @@ import './App.css';
 import axios from "axios";
 import UserCard from "./components/UserCard"
 import styled from "styled-components"
+import { S } from 'xmlchars/xml/1.0/ed5';
 
 const MainDiv = styled.div`
   width: 85%;
   margin: auto;
+  border: 4px solid tomato;
+  border-top: none;
+  border-bottom: none;
 `;
+
+const SubDiv = styled.div`
+  width: 90%;
+  margin: auto;
+  margin-top: 1%;
+`;
+
+const Title = styled.h1`
+  color: tomato;
+  font-size: 1.5rem;
+`;
+
+
+
 
 export default class App extends React.Component{
 
@@ -54,22 +72,27 @@ export default class App extends React.Component{
     console.log("username render: ", this.state)
     return(
       <MainDiv>
-      <h1>You</h1>
-      <UserCard 
-        username={this.state.username}
-        img={this.state.img}
-        repo={this.state.repo}
-      />
-      <h1>Your Friends</h1>
-      {this.state.friends.map(friend=>{
+        <SubDiv><h1>Your Github Friends List</h1></SubDiv>
+        <SubDiv>
+          <Title>Your Profile</Title>
+          <UserCard 
+            username={this.state.username}
+            img={this.state.img}
+            repo={this.state.repo}
+          />
+        </SubDiv>
+        <SubDiv> 
+          <Title>Your Friends</Title>
+          {this.state.friends.map(friend=>{
 
-        return <UserCard
-          username={friend.login}
-          img={friend.avatar_url}
-          repo={friend.repo}
-        />
+            return <UserCard
+              username={friend.login}
+              img={friend.avatar_url}
+              repo={friend.repo}
+            />
 
-      })}
+          })}
+        </SubDiv>
       </MainDiv>
     )
   }
