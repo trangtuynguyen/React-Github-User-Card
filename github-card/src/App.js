@@ -2,6 +2,12 @@ import React from 'react';
 import './App.css';
 import axios from "axios";
 import UserCard from "./components/UserCard"
+import styled from "styled-components"
+
+const MainDiv = styled.div`
+  width: 85%;
+  margin: auto;
+`;
 
 export default class App extends React.Component{
 
@@ -47,7 +53,7 @@ export default class App extends React.Component{
   render(){
     console.log("username render: ", this.state)
     return(
-      <>
+      <MainDiv>
       <h1>You</h1>
       <UserCard 
         username={this.state.username}
@@ -64,7 +70,7 @@ export default class App extends React.Component{
         />
 
       })}
-      </>
+      </MainDiv>
     )
   }
 
